@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <!-- Styles -->
+    <link rel="stylesheet" href="media/css/normalize.min.css">
+    <link rel="stylesheet" href="https://cloudbogdan.github.io/erid/erid.min.css">
+    <link rel="stylesheet" href="media/css/style.css">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap" rel="stylesheet"> 
+    <!-- JS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Kriz</title>
+</head>
+<body>
+    <div id="app" class="content cldcenter">
+
+        <div class="modal_window">
+            <div class="content block card alert">
+                <div class="button fill centered" :class="valute.name === 'PLT' ? 'active' : ''" @click="chooseValute('PLN')">
+                    zł
+                    Польский Злотый
+                </div>
+                <div class="button fill centered" :class="valute.name === 'KZT' ? 'active' : ''" @click="chooseValute('KZT')">
+                    ₸
+                    Казахский Тенге
+                </div>
+                <div class="button fill centered" :class="valute.name === 'ILS' ? 'active' : ''" @click="chooseValute('ILS')">
+                    ₪
+                    Израильский Шекель
+                </div>
+                <div class="button fill centered"  :class="valute.name === 'BYN' ? 'active' : ''" @click="chooseValute('BYN')">
+                    ₽
+                    Белорусский Рубль
+                </div>
+                <div class="button fill centered"  :class="valute.name === 'GBP' ? 'active' : ''" @click="chooseValute('GBP')">
+                    £
+                    Английский Фунт
+                </div>
+                <div class="button fill centered"  :class="valute.name === 'UAH' ? 'active' : ''" @click="chooseValute('UAH')">
+                    ₴
+                    Гривны
+                </div>
+                <hr>
+                <div class="button fill centered" :class="valute.name === 'USD' ? 'active' : ''" @click="chooseValute('USD')">
+                    $
+                    США Доллар
+                </div>
+                <div class="button fill centered"  :class="valute.name === 'EUR' ? 'active' : ''" @click="chooseValute('EUR')">
+                    €
+                    Евро
+                </div>
+            </div>
+        </div>
+
+        <div class="content block cldcenter centered">
+            <div class="content block cldcenter centered card">
+                <h1 class="ico text center">
+                    {{ valute.symbols[valute.name] }}
+                </h1>
+                
+                <div class="content block padding" style="margin-top: -50px;">
+                    <div class="text center">
+                        До этого: <br>
+                        {{ "₽" + curce.old_value }}
+                    </div>
+                    <h1 class="text center margin ver">
+                        На данный момент: <br>
+                        <span class="text red">
+                            {{ "₽" + curce.value }}
+                        </span>
+                    </h1>
+                    <div class="content block text center margin bottom">
+                        <div class="margin bottom">
+                            Изменился на
+                        </div>
+                        <div class="bar">
+                            <div class="track"></div>
+
+                            <span class="text">
+                                {{ changes + "%" }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="button centered" @click="togleModalWindow">
+                        Сменить валюту
+                        <svg width="12" height="10">
+                            <polygon 
+                                points="0,0 12,0 6,10"
+                                style="fill:#fff;" 
+                            >
+                        </svg>
+                    </div>
+                    <p class="text grey center margin top">
+                        Последний подчёт: сегодня
+                        <br>
+                        Предпоследний подчёт: вчера
+                        <br>
+                        Данные взяты с сайта: <a href="https://www.cbr-xml-daily.ru">https://www.cbr-xml-daily.ru</a>
+                    </p>
+                </div>
+            </div>
+            <span class="text red center margin top" style="max-width: 400px; font-size: 12px;">
+                Многие данные могут быть подленными. Не советую верить им. <br>
+                А так, спосибо за внимание :) 
+            </span>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
